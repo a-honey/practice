@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>이미지를 처리해보도록 하자</title>
+  </head>
+  <body>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="image">이미지 업로드를 하세요!</label>
+      <input type="file" name="image" required />
+      <br />
+      <input type="submit" value="업로드" />
+    </form>
+  </body>
+</html>

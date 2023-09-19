@@ -3,5 +3,4 @@ from app import views
 
 urlpatterns = [
     path('', views.index),
-    path('hello/<id>', views.hello),
 ]
