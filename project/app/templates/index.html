@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<h>
+<html>
   <head>
     <title>이미지를 처리해보도록 하자</title>
+    <link rel="stylesheet" , href="https://unpkg.com/mvp.css" />
   </head>
-  <b>
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <label for="image">이미지 업로드를 하세요!</label>
-      <input type="file" name="image" required />
-      <br />
-      <input type="submit" value="업로드" />
-    </form>
-  </b
+  <body>
+    <main>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 for="image">이미지 업로드를 하세요!</h1>
+        <input type="file" name="image" required />
+        <br />
+        <input type="submit" value="업로드" />
+      </form>
+    </main>
+  </body>
+</html>
