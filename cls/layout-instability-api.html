@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout Shift Example</title>
+    <style>
+      .container {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .moving-element {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: move 5s infinite;
+      }
+
+      @keyframes move {
+        0% {
+          top: 0;
+          left: 0;
+        }
+        50% {
+          top: 100px;
+          left: 100px;
+        }
+        100% {
+          top: 0;
+          left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="moving-element"></div>
+    </div>
+
+    <script>
+      // DOM이 로드되면 PerformanceObserver 객체를 생성
+      window.addEventListener("DOMContentLoaded", () => {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          entries.forEach((entry) => {
+            // layout-shift 이벤트를 감지하고 콘솔에 출력
+            if (entry.entryType === "layout-shift" && entry.value > 0) {
+              console.log("Layout Shift Score:", entry.value);
+            }
+          });
+        });
+
+        observer.observe({ type: "layout-shift", buffered: true });
+
+        window.addEventListener("unload", () => {
+          observer.disconnect();
+        });
+      });
+    </script>
+  </body>
+</html>
